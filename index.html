@@ -251,7 +251,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/01/solr1/" itemprop="url">Solr7服务器搭建及遇到的问题（一）</a></h1>
+                <a class="post-title-link" href="/2019/07/01/solr1/" itemprop="url">Solr7在SpringBoot中的配置</a></h1>
         
 
         <div class="post-meta">
@@ -295,7 +295,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  891
+                  4
                 </span>
               
 
@@ -311,7 +311,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  1
                 </span>
               
             </div>
@@ -333,14 +333,9 @@
 
       
         
-          <h3 id="本文的配置是solr7-7-2-tomcat8-5-27-是solr的单机版配置，也就是在-solr-7-7-2-server-solr中新建core进行配置的，不涉及solr和tomcat的配置，访问的是localhoat-8893，如果涉及tomcat配置，访问的是localhost-8080-sorl-index"><a href="#本文的配置是solr7-7-2-tomcat8-5-27-是solr的单机版配置，也就是在-solr-7-7-2-server-solr中新建core进行配置的，不涉及solr和tomcat的配置，访问的是localhoat-8893，如果涉及tomcat配置，访问的是localhost-8080-sorl-index" class="headerlink" title="本文的配置是solr7.7.2+tomcat8.5.27, 是solr的单机版配置，也就是在../solr-7.7.2/server/solr中新建core进行配置的，不涉及solr和tomcat的配置，访问的是localhoat:8893，如果涉及tomcat配置，访问的是localhost:8080/sorl/index"></a>本文的配置是solr7.7.2+tomcat8.5.27, 是solr的单机版配置，也就是在../solr-7.7.2/server/solr中新建core进行配置的，不涉及solr和tomcat的配置，访问的是localhoat:8893，如果涉及tomcat配置，访问的是localhost:8080/sorl/index</h3><h4 id="需要下载的包：ik-analyzer-solr7-7-x-jar和mysql-connector-java-5-1-40-jar，放置的位置是在solr-7-7-2下建立ext文件夹，在ext文件夹中建立两个文件夹分别是ikanalyzer和mysql，然后将对应的jar包放入对应的文件夹即可，后续需要配置文件的时候要写入这个位置"><a href="#需要下载的包：ik-analyzer-solr7-7-x-jar和mysql-connector-java-5-1-40-jar，放置的位置是在solr-7-7-2下建立ext文件夹，在ext文件夹中建立两个文件夹分别是ikanalyzer和mysql，然后将对应的jar包放入对应的文件夹即可，后续需要配置文件的时候要写入这个位置" class="headerlink" title="需要下载的包：ik-analyzer-solr7-7.x.jar和mysql-connector-java-5.1.40.jar，放置的位置是在solr-7.7.2下建立ext文件夹，在ext文件夹中建立两个文件夹分别是ikanalyzer和mysql，然后将对应的jar包放入对应的文件夹即可，后续需要配置文件的时候要写入这个位置."></a>需要下载的包：ik-analyzer-solr7-7.x.jar和mysql-connector-java-5.1.40.jar，放置的位置是在solr-7.7.2下建立ext文件夹，在ext文件夹中建立两个文件夹分别是ikanalyzer和mysql，然后将对应的jar包放入对应的文件夹即可，后续需要配置文件的时候要写入这个位置.</h4>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/07/01/solr1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <h4 id="留坑待写"><a href="#留坑待写" class="headerlink" title="####留坑待写"></a>####留坑待写</h4>
+          
         
       
     </div>
@@ -406,7 +401,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/01/postName/" itemprop="url">postName</a></h1>
+                <a class="post-title-link" href="/2019/07/01/postName/" itemprop="url">Solr7服务器搭建及遇到的问题（二）</a></h1>
         
 
         <div class="post-meta">
@@ -429,6 +424,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/search-system/" itemprop="url" rel="index">
+                    <span itemprop="name">search system</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -450,7 +467,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  554
                 </span>
               
 
@@ -466,7 +483,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -488,9 +505,15 @@
 
       
         
-          
-            
-          
+          <h4 id="相关配置和搭建请看Solr7服务器搭建及遇到的问题（一）"><a href="#相关配置和搭建请看Solr7服务器搭建及遇到的问题（一）" class="headerlink" title="相关配置和搭建请看Solr7服务器搭建及遇到的问题（一）"></a>相关配置和搭建请看<a href="[https://ljf2019.github.io/2019/07/01/Solr7%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/](https://ljf2019.github.io/2019/07/01/Solr7服务器搭建遇到的问题/)">Solr7服务器搭建及遇到的问题（一）</a></h4><h4 id="设置好相关配置之后就重启solr，输入命令solr-restart-p-8983-这里一定要指定端口，不然会报错，关闭solr的命令是solr-stop-all。选中你建立的core可以看到下面有各种选项。"><a href="#设置好相关配置之后就重启solr，输入命令solr-restart-p-8983-这里一定要指定端口，不然会报错，关闭solr的命令是solr-stop-all。选中你建立的core可以看到下面有各种选项。" class="headerlink" title="设置好相关配置之后就重启solr，输入命令solr restart -p 8983, 这里一定要指定端口，不然会报错，关闭solr的命令是solr stop -all。选中你建立的core可以看到下面有各种选项。"></a>设置好相关配置之后就重启solr，输入命令<code>solr restart -p 8983</code>, 这里一定要指定端口，不然会报错，关闭solr的命令是<code>solr stop -all</code>。选中你建立的core可以看到下面有各种选项。</h4><p><img src="/images/TIM%E6%88%AA%E5%9B%BE20190701162807.jpg" alt="TIM截图20190701162807"></p>
+<h4 id="选中Analysis可以使用加入的ik分词看建立的索引和查询效果，中间的FildType设置为text-ik，则说明ik分词器已经成功导入并且可以使用，如图所示。"><a href="#选中Analysis可以使用加入的ik分词看建立的索引和查询效果，中间的FildType设置为text-ik，则说明ik分词器已经成功导入并且可以使用，如图所示。" class="headerlink" title="选中Analysis可以使用加入的ik分词看建立的索引和查询效果，中间的FildType设置为text_ik，则说明ik分词器已经成功导入并且可以使用，如图所示。"></a>选中Analysis可以使用加入的ik分词看建立的索引和查询效果，中间的FildType设置为text_ik，则说明ik分词器已经成功导入并且可以使用，如图所示。</h4>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/01/postName/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -733,7 +756,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/06/25/hello-world/" itemprop="url">Hello World</a></h1>
+                <a class="post-title-link" href="/2019/06/25/hello-world/" itemprop="url">Typora + Hexo写blog遇到的问题记录</a></h1>
         
 
         <div class="post-meta">
@@ -756,6 +779,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/editor/" itemprop="url" rel="index">
+                    <span itemprop="name">-editor</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -777,7 +822,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  73
+                  385
                 </span>
               
 
@@ -815,22 +860,14 @@
 
       
         
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
+          <h4 id="1-blog显示文章未命名问题："><a href="#1-blog显示文章未命名问题：" class="headerlink" title="1)blog显示文章未命名问题："></a>1)blog显示文章未命名问题：</h4><h4 id="hexo在我电脑上文件的根目录是F-blog-下述-均是该目录）-hexo将-md文件放在-source-posts目录下，新建hexo文件一般是对根目录右键选中git-bash，然后输入命令行hexo-new-name-文档名字-。如果不这样做就需要在-md文件的最前面加上YAML-front-matter，如果使用上述命令行生成的-md文件自带yaml。使用typora只需要在文章开头打—-在横线上面添加相关内容即可，如果不做这一步，blog文章会显示未命名。"><a href="#hexo在我电脑上文件的根目录是F-blog-下述-均是该目录）-hexo将-md文件放在-source-posts目录下，新建hexo文件一般是对根目录右键选中git-bash，然后输入命令行hexo-new-name-文档名字-。如果不这样做就需要在-md文件的最前面加上YAML-front-matter，如果使用上述命令行生成的-md文件自带yaml。使用typora只需要在文章开头打—-在横线上面添加相关内容即可，如果不做这一步，blog文章会显示未命名。" class="headerlink" title="hexo在我电脑上文件的根目录是F:/blog(下述../均是该目录）,hexo将.md文件放在../source/_posts目录下，新建hexo文件一般是对根目录右键选中git bash，然后输入命令行hexo new name(文档名字)。如果不这样做就需要在.md文件的最前面加上YAML front matter，如果使用上述命令行生成的.md文件自带yaml。使用typora只需要在文章开头打—,在横线上面添加相关内容即可，如果不做这一步，blog文章会显示未命名。"></a>hexo在我电脑上文件的根目录是F:/blog(下述../均是该目录）,hexo将.md文件放在../source/_posts目录下，新建hexo文件一般是对根目录右键选中git bash，然后输入命令行hexo new name(文档名字)。如果不这样做就需要在.md文件的最前面加上YAML front matter，如果使用上述命令行生成的.md文件自带yaml。使用typora只需要在文章开头打—,在横线上面添加相关内容即可，如果不做这一步，blog文章会显示未命名。</h4>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/25/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -921,7 +958,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -932,7 +969,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -1001,7 +1038,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共1.9k字</span>
+  <span class="post-count">博客全站共1.8k字</span>
 </div>
 
         
