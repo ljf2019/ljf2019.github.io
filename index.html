@@ -232,6 +232,161 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/01/solr1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LJF">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LJF Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/01/solr1/" itemprop="url">Solr7服务器搭建及遇到的问题（一）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-01T15:04:27+08:00">
+                2019-07-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  891
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="本文的配置是solr7-7-2-tomcat8-5-27-是solr的单机版配置，也就是在-solr-7-7-2-server-solr中新建core进行配置的，不涉及solr和tomcat的配置，访问的是localhoat-8893，如果涉及tomcat配置，访问的是localhost-8080-sorl-index"><a href="#本文的配置是solr7-7-2-tomcat8-5-27-是solr的单机版配置，也就是在-solr-7-7-2-server-solr中新建core进行配置的，不涉及solr和tomcat的配置，访问的是localhoat-8893，如果涉及tomcat配置，访问的是localhost-8080-sorl-index" class="headerlink" title="本文的配置是solr7.7.2+tomcat8.5.27, 是solr的单机版配置，也就是在../solr-7.7.2/server/solr中新建core进行配置的，不涉及solr和tomcat的配置，访问的是localhoat:8893，如果涉及tomcat配置，访问的是localhost:8080/sorl/index"></a>本文的配置是solr7.7.2+tomcat8.5.27, 是solr的单机版配置，也就是在../solr-7.7.2/server/solr中新建core进行配置的，不涉及solr和tomcat的配置，访问的是localhoat:8893，如果涉及tomcat配置，访问的是localhost:8080/sorl/index</h3><h4 id="需要下载的包：ik-analyzer-solr7-7-x-jar和mysql-connector-java-5-1-40-jar，放置的位置是在solr-7-7-2下建立ext文件夹，在ext文件夹中建立两个文件夹分别是ikanalyzer和mysql，然后将对应的jar包放入对应的文件夹即可，后续需要配置文件的时候要写入这个位置"><a href="#需要下载的包：ik-analyzer-solr7-7-x-jar和mysql-connector-java-5-1-40-jar，放置的位置是在solr-7-7-2下建立ext文件夹，在ext文件夹中建立两个文件夹分别是ikanalyzer和mysql，然后将对应的jar包放入对应的文件夹即可，后续需要配置文件的时候要写入这个位置" class="headerlink" title="需要下载的包：ik-analyzer-solr7-7.x.jar和mysql-connector-java-5.1.40.jar，放置的位置是在solr-7.7.2下建立ext文件夹，在ext文件夹中建立两个文件夹分别是ikanalyzer和mysql，然后将对应的jar包放入对应的文件夹即可，后续需要配置文件的时候要写入这个位置."></a>需要下载的包：ik-analyzer-solr7-7.x.jar和mysql-connector-java-5.1.40.jar，放置的位置是在solr-7.7.2下建立ext文件夹，在ext文件夹中建立两个文件夹分别是ikanalyzer和mysql，然后将对应的jar包放入对应的文件夹即可，后续需要配置文件的时候要写入这个位置.</h4>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/01/solr1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/01/postName/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -761,7 +916,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -852,7 +1007,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共977字</span>
+  <span class="post-count">博客全站共1.9k字</span>
 </div>
 
         
