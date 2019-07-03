@@ -251,7 +251,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/01/solr1/" itemprop="url">Solr7在SpringBoot中的配置</a></h1>
+                <a class="post-title-link" href="/2019/07/01/solr1/" itemprop="url">Solr7在SpringBoot中的配置以及遇到的问题</a></h1>
         
 
         <div class="post-meta">
@@ -274,6 +274,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SpringBoot/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringBoot</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -295,7 +317,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  4
+                  720
                 </span>
               
 
@@ -311,7 +333,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  3
                 </span>
               
             </div>
@@ -334,7 +356,14 @@
       
         
           
-            <h4 id="留坑待写"><a href="#留坑待写" class="headerlink" title="####留坑待写"></a>####留坑待写</h4>
+            <h4 id="首先是加依赖，之前说了，本文的配置是solr7-7-2，在mvnrepository中搜索solrj，选择Apache-Solr-Solrj，选择版本7-7-2就可以找到相关依赖配置"><a href="#首先是加依赖，之前说了，本文的配置是solr7-7-2，在mvnrepository中搜索solrj，选择Apache-Solr-Solrj，选择版本7-7-2就可以找到相关依赖配置" class="headerlink" title="#### 首先是加依赖，之前说了，本文的配置是solr7.7.2，在mvnrepository中搜索solrj，选择Apache Solr Solrj，选择版本7.7.2就可以找到相关依赖配置"></a>#### 首先是加依赖，之前说了，本文的配置是solr7.7.2，在<a href="https://mvnrepository.com/" target="_blank" rel="noopener">mvnrepository</a>中搜索solrj，选择Apache Solr Solrj，选择版本7.7.2就可以找到相关依赖配置</h4><p><img src="/images/TIM%E6%88%AA%E5%9B%BE20190703095856.jpg" alt="TIM截图20190703095856"></p>
+<h4 id="将下述代码块添加到pom-xml文件中"><a href="#将下述代码块添加到pom-xml文件中" class="headerlink" title="将下述代码块添加到pom.xml文件中"></a>将下述代码块添加到pom.xml文件中</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.apache.solr&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;solr-solrj&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;7.7.2&lt;/version&gt;</span><br><span class="line"> &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="新建searchService，实现查询和建立索引两大功能"><a href="#新建searchService，实现查询和建立索引两大功能" class="headerlink" title="新建searchService，实现查询和建立索引两大功能"></a>新建searchService，实现查询和建立索引两大功能</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class SearchService &#123;</span><br><span class="line">	//建立索引，查询</span><br><span class="line">	//这是连接solr服务器的网址</span><br><span class="line">	private static final String SOLR_URL = &quot;http://127.0.0.1:8983/solr/wenda&quot;;</span><br><span class="line">	private HttpSolrClient client = new HttpSolrClient.Builder(SOLR_URL).build();//建立连接</span><br><span class="line">	private static final String QUESTION_TITLE_FIELD = &quot;question_title&quot;;</span><br><span class="line">	private static final String QUESTION_CONTENT_FIELD = &quot;question_content&quot;;</span><br><span class="line"></span><br><span class="line">	public List&lt;Question&gt; searchQuestion(String keyword, int offset, int count,</span><br><span class="line">										 String hlPre, String hlPos) throws Exception&#123;</span><br><span class="line">		List&lt;Question&gt; questionList = new ArrayList&lt;&gt;();</span><br><span class="line">		SolrQuery query = new SolrQuery(keyword);</span><br><span class="line">		query.setRows(count);</span><br><span class="line">		query.setStart(offset);</span><br><span class="line">		query.setHighlight(true);</span><br><span class="line">		query.setHighlightSimplePre(hlPre);</span><br><span class="line">		query.setHighlightSimplePost(hlPos);</span><br><span class="line">		query.set(&quot;hl.fl&quot;,QUESTION_CONTENT_FIELD+&quot;,&quot;+QUESTION_TITLE_FIELD);</span><br><span class="line">		//如果没有配置默认的df，这里就一定要设置df！！！否则就不会有返回值</span><br><span class="line">		query.set(&quot;df&quot;, QUESTION_CONTENT_FIELD);</span><br><span class="line">		QueryResponse response = client.query(query);</span><br><span class="line">		for(Map.Entry&lt;String, Map&lt;String, List&lt;String&gt;&gt;&gt; entry:response.getHighlighting().entrySet())&#123;</span><br><span class="line">			Question q = new Question();</span><br><span class="line">			q.setId(Integer.parseInt(entry.getKey()));</span><br><span class="line">			if(entry.getValue().containsKey(QUESTION_CONTENT_FIELD))&#123;</span><br><span class="line">				List&lt;String&gt; contentList = entry.getValue().get(QUESTION_CONTENT_FIELD);</span><br><span class="line">				if(contentList.size()&gt;0)&#123;</span><br><span class="line">					q.setContent(contentList.get(0));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if(entry.getValue().containsKey(QUESTION_TITLE_FIELD))&#123;</span><br><span class="line">				List&lt;String&gt; titleList = entry.getValue().get(QUESTION_TITLE_FIELD);</span><br><span class="line">				if(titleList.size()&gt;0)&#123;</span><br><span class="line">					q.setTitle(titleList.get(0));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			questionList.add(q);</span><br><span class="line">		&#125;</span><br><span class="line">		return questionList;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public boolean indexQuestion(int qid, String title, String content) throws Exception&#123;</span><br><span class="line">		SolrInputDocument doc = new SolrInputDocument();</span><br><span class="line">		doc.setField(&quot;id&quot;, qid);</span><br><span class="line">		doc.setField(QUESTION_CONTENT_FIELD,content);</span><br><span class="line">		doc.setField(QUESTION_TITLE_FIELD,title);</span><br><span class="line">		UpdateResponse response = client.add(doc,1000);//在1000毫秒内直接返回</span><br><span class="line">		return response != null &amp;&amp; response.getStatus() == 0;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="遇到的问题：1）启动报错：Error-creating-bean-with-name-‘solrClient’，这个的原因是因为在Springboot启动的时候会给项目配置HttpSolrClient-与我们自行配置的HttpSolrClient冲突了，所以就需要我们禁止SpringBoot关于solr的自行配置。然后我就卡在了百度在哪禁止这个问题上了，研究了一下，是在你启动整个项目的类文件中，也就是XXXApplication这个类中（XXX一般是你项目名字）在-SpringBootApplication中添加"><a href="#遇到的问题：1）启动报错：Error-creating-bean-with-name-‘solrClient’，这个的原因是因为在Springboot启动的时候会给项目配置HttpSolrClient-与我们自行配置的HttpSolrClient冲突了，所以就需要我们禁止SpringBoot关于solr的自行配置。然后我就卡在了百度在哪禁止这个问题上了，研究了一下，是在你启动整个项目的类文件中，也就是XXXApplication这个类中（XXX一般是你项目名字）在-SpringBootApplication中添加" class="headerlink" title="遇到的问题：1）启动报错：Error creating bean with name ‘solrClient’，这个的原因是因为在Springboot启动的时候会给项目配置HttpSolrClient,与我们自行配置的HttpSolrClient冲突了，所以就需要我们禁止SpringBoot关于solr的自行配置。然后我就卡在了百度在哪禁止这个问题上了，研究了一下，是在你启动整个项目的类文件中，也就是XXXApplication这个类中（XXX一般是你项目名字）在@SpringBootApplication中添加"></a>遇到的问题：1）启动报错：Error creating bean with name ‘solrClient’，这个的原因是因为在Springboot启动的时候会给项目配置HttpSolrClient,与我们自行配置的HttpSolrClient冲突了，所以就需要我们禁止SpringBoot关于solr的自行配置。然后我就卡在了百度在哪禁止这个问题上了，研究了一下，是在你启动整个项目的类文件中，也就是XXXApplication这个类中（XXX一般是你项目名字）在@SpringBootApplication中添加</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span>(exclude=SolrAutoConfiguration.class)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2）solr报错：Expected-mime-type-application-octet-stream-but-got-text-html-，原因，一般是solr的URL写错了，我当时是把solr写成了sorl，需要检查url，另外如果是在本机测试需要启动sorl，否则会被拒绝报错"><a href="#2）solr报错：Expected-mime-type-application-octet-stream-but-got-text-html-，原因，一般是solr的URL写错了，我当时是把solr写成了sorl，需要检查url，另外如果是在本机测试需要启动sorl，否则会被拒绝报错" class="headerlink" title="2）solr报错：Expected mime type application/octet-stream but got text/html ，原因，一般是solr的URL写错了，我当时是把solr写成了sorl，需要检查url，另外如果是在本机测试需要启动sorl，否则会被拒绝报错"></a>2）solr报错：<strong>Expected mime type application/octet-stream but got text/html</strong> ，原因，一般是solr的URL写错了，我当时是把solr写成了sorl，需要检查url，另外如果是在本机测试需要启动sorl，否则会被拒绝报错</h4><h4 id="3）没有报错，查询结果一直显示空白：这个的主要原因是solr里面的df配置问题，我在文章里面说过了，solr7-7-2注释了默认的df，并且也注释了将所有内容复制到-text-进行全部搜索的部分代码，如果没有设置默认的df，那么在写searchService查询部分的时候就必须指定solr的df，否则查询不到结果。"><a href="#3）没有报错，查询结果一直显示空白：这个的主要原因是solr里面的df配置问题，我在文章里面说过了，solr7-7-2注释了默认的df，并且也注释了将所有内容复制到-text-进行全部搜索的部分代码，如果没有设置默认的df，那么在写searchService查询部分的时候就必须指定solr的df，否则查询不到结果。" class="headerlink" title="3）没有报错，查询结果一直显示空白：这个的主要原因是solr里面的df配置问题，我在文章里面说过了，solr7.7.2注释了默认的df，并且也注释了将所有内容复制到_text_进行全部搜索的部分代码，如果没有设置默认的df，那么在写searchService查询部分的时候就必须指定solr的df，否则查询不到结果。"></a>3）没有报错，查询结果一直显示空白：这个的主要原因是solr里面的df配置问题，我在<a href="https://ljf2019.github.io/2019/07/01/postName/" target="_blank" rel="noopener">文章</a>里面说过了，solr7.7.2注释了默认的df，并且也注释了将所有内容复制到<code>_text_</code>进行全部搜索的部分代码，如果没有设置默认的df，那么在写searchService查询部分的时候就必须指定solr的df，否则查询不到结果。</h4>
           
         
       
@@ -467,7 +496,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  627
+                  614
                 </span>
               
 
@@ -958,7 +987,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -1038,7 +1067,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共1.9k字</span>
+  <span class="post-count">博客全站共2.6k字</span>
 </div>
 
         
